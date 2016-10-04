@@ -29,7 +29,7 @@ static bool is_leap_year(int year) {
 
 static bool is_night(int hour) {
   // Night begins at 6PM and ends at 5AM
-  if (hour >= 18 && hour < 5) {
+  if (hour >= 18 || hour < 5) {
     return true;
   }
   return false;
