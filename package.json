@@ -1,0 +1,56 @@
+{
+    "author": "Max Moseley",
+    "dependencies": {},
+    "keywords": [],
+    "name": "dailyring",
+    "pebble": {
+        "displayName": "DailyRing",
+        "enableMultiJS": false,
+        "messageKeys": [
+            "LOE"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "fonts/NeueHaasUnicaPro-Regular.ttf",
+                    "name": "DATE_FONT_14",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/NeueHaasUnicaPro-Regular.ttf",
+                    "name": "DATE_FONT_18",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/Europa-Bold.otf",
+                    "name": "TIME_FONT_32",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/Europa-Bold.otf",
+                    "name": "TIME_FONT_45",
+                    "targetPlatforms": null,
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite"
+        ],
+        "uuid": "4ffbd5ec-4f35-4fb4-9886-6a6683c7ec5a",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.6.0"
+}
