@@ -54,7 +54,7 @@ static void set_light () {
 
 static void draw_main_clock(Layer *layer, GContext *ctx) {
   
-  time_t temp = 1478494802;
+  time_t temp = time(NULL);
   struct tm *t = localtime(&temp);
 
   GRect bounds = layer_get_bounds(layer);
@@ -97,7 +97,7 @@ static void draw_main_clock(Layer *layer, GContext *ctx) {
 
 static void tick_handler(struct tm *ta, TimeUnits changed) {
 
-  time_t temp = 1478494802;
+  time_t temp = time(NULL);
   struct tm *t = localtime(&temp);
   
   if ((MINUTE_UNIT & changed) || first_run) {
@@ -116,14 +116,7 @@ static void tick_handler(struct tm *ta, TimeUnits changed) {
   }
   
   if ((DAY_UNIT & changed) || first_run) {
-    int max;
-    if (is_leap_year(t->tm_year)) {
-      max = 366;
-    } else {
-      max = 365;
-    }
-    int diff = max - (t->tm_yday + 1);
-    snprintf(doy_buffer, sizeof(doy_buffer), "%d", diff);
+    strftime(doy_buffer, sizeof(doy_buffer), "%U", t);
     strftime(date_buffer, sizeof(date_buffer), "%a %d", t); 
     text_layer_set_text(date_layer, date_buffer);
     text_layer_set_text(doy_layer, doy_buffer);
