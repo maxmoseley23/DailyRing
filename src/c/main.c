@@ -1,7 +1,7 @@
 #include <pebble.h>
 Window *my_window;
 static Layer *main_clock;
-static char date_buffer[] = "Thu 12";
+static char date_buffer[] = "Thu 12 Nov";
 static char time_buffer[] = "23:59";
 static char doy_buffer[] = "366";
 static TextLayer *time_layer, *date_layer, *doy_layer;
@@ -117,7 +117,7 @@ static void tick_handler(struct tm *ta, TimeUnits changed) {
   
   if ((DAY_UNIT & changed) || first_run) {
     strftime(doy_buffer, sizeof(doy_buffer), "%U", t);
-    strftime(date_buffer, sizeof(date_buffer), "%a %d", t); 
+    strftime(date_buffer, sizeof(date_buffer), "%b %d %a", t); 
     text_layer_set_text(date_layer, date_buffer);
     text_layer_set_text(doy_layer, doy_buffer);
     if (first_run) {
