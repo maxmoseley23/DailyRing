@@ -9,6 +9,7 @@ static bool first_run = true;
 
 static int hour; // The current hour
 static int min; // The current minute
+static int wday; // The current weekday 0-6
 
 // Layout boundaries
 #define DAY_RING PBL_IF_ROUND_ELSE(9, 5)
@@ -53,7 +54,7 @@ static void set_light () {
 
 static void draw_main_clock(Layer *layer, GContext *ctx) {
   
-  time_t temp = time(NULL);
+  time_t temp = 1478494802;
   struct tm *t = localtime(&temp);
 
   GRect bounds = layer_get_bounds(layer);
@@ -76,7 +77,8 @@ static void draw_main_clock(Layer *layer, GContext *ctx) {
 
 
   // Day Ring
-  int32_t hour_angle = (TRIG_MAX_ANGLE * ((hour * 60) + min)/1440);
+  int32_t day = wday * 24;
+  int32_t week_angle = (day + hour) * (TRIG_MAX_ANGLE/168);
   int32_t start = 0;
 
 	graphics_context_set_stroke_width(ctx, 
@@ -89,11 +91,14 @@ static void draw_main_clock(Layer *layer, GContext *ctx) {
     graphics_context_set_fill_color(ctx, GColorBlack);
   }
   
-  graphics_fill_radial(ctx,  dr,  GOvalScaleModeFitCircle, 9, start, hour_angle);
+  graphics_fill_radial(ctx,  dr,  GOvalScaleModeFitCircle, 9, start, week_angle);
   
 }
 
-static void tick_handler(struct tm *t, TimeUnits changed) {
+static void tick_handler(struct tm *ta, TimeUnits changed) {
+
+  time_t temp = 1478494802;
+  struct tm *t = localtime(&temp);
   
   if ((MINUTE_UNIT & changed) || first_run) {
     if (is_night(t->tm_hour)) {
@@ -106,6 +111,7 @@ static void tick_handler(struct tm *t, TimeUnits changed) {
     text_layer_set_text(time_layer, time_buffer);
     hour = t->tm_hour;
     min = t->tm_min;
+    wday = t->tm_wday;
     layer_mark_dirty(main_clock);
   }
   

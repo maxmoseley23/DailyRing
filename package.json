@@ -2,9 +2,9 @@
     "author": "Max Moseley",
     "dependencies": {},
     "keywords": [],
-    "name": "dailyring",
+    "name": "weeklyring",
     "pebble": {
-        "displayName": "DailyRing",
+        "displayName": "WeeklyRing",
         "enableMultiJS": false,
         "messageKeys": [
             "LOE"
@@ -47,10 +47,10 @@
             "chalk",
             "diorite"
         ],
-        "uuid": "4ffbd5ec-4f35-4fb4-9886-6a6683c7ec5a",
+        "uuid": "5889e661-b94b-460b-b52c-dd5f93d51c73",
         "watchapp": {
             "watchface": true
         }
     },
-    "version": "1.6.0"
+    "version": "1.0.0"
 }
